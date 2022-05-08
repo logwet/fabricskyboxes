@@ -116,3 +116,5 @@ gradle-app.setting
 
 run/*
 !run/resourcepacks
+
+*/run/

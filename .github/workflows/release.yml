@@ -1,10 +1,8 @@
 name: Release CI
-
 on:
   release:
     types:
       - published
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,13 +19,34 @@ jobs:
           java-version: 17
       - name: Build
         run: ./gradlew build
-      - name: Publish to Modrinth
-        run: ./gradlew publishModrinth
-        env:
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
-          CHANGELOG_BODY: ${{ github.event.release.body }}
       - name: Upload assets to release
         uses: AButler/upload-release-assets@v2.0
         with:
-          files: 'build/libs/*'
+          files: 'fabric/build/libs/*-fabric.jar;forge/build/libs/*-forge.jar'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Fabric to Modrinth & CurseForge
+        uses: Kir-Antipov/mc-publish@v2.1
+        with:
+          modrinth-id: YBz7DOs8
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          curseforge-id: 408209
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+          files-primary: fabric/build/libs/!(*-@(dev|sources)).jar
+
+          version-type: release
+
+          game-versions: 1.18.2
+
+          loaders: fabric
+
+          version-resolver: latest
+
+          java: 17
+
+          retry-attempts: 2
+          retry-delay: 10000

@@ -6,4 +6,4 @@ These skyboxes will never be cleared after a resource reload and should often on
 To add permanent skyboxes, simply call `SkyboxManager.getInstance().addPermanentSkybox(mySkybox)` in your client mod initializer. 
 In theory, this it can be called anywhere. It is recommended that it should be called at startup since the skybox cannot be disabled once enabled.
 
-You can find an example of a permanent skybox in the [testmod](../src/testmod/java/io/github/amerebagatelle/fabricskyboxes/TestClientModInitializer.java)
+You can find an example of a permanent skybox in the [testmod](../common/src/testmod/java/io/github/amerebagatelle/fabricskyboxes/TestClientModInitializer.java)

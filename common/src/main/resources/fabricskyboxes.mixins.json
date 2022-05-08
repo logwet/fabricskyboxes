@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "io.github.amerebagatelle.fabricskyboxes.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+  ],
+  "client": [
+    "skybox.FogColorMixin",
+    "skybox.SkyboxRenderMixin",
+    "skybox.SunSkyColorMixin",
+    "skybox.WorldRendererAccess"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
